@@ -1,11 +1,11 @@
-﻿using MyMapNode;
+﻿using HashTable;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HashTable_BST_CS
+namespace HashTable
 {
     class Program
     {

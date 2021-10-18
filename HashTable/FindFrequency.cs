@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashTable
 {
-
-    public class MyMapNode<K, V>
+    public class MyMapNode<K, V> // K,V used because I have to build a Key Value in Hash Table.
     {
         //this method is for passing Keyvalues in linkedlist k,v are data types
         //Created a class for key,value pair.
@@ -68,6 +67,7 @@ namespace HashTable
                 {
                     if (item1.Key.Equals(key))
                     {
+                        Remove(key);
                         break;
                     }
                 }
@@ -90,7 +90,28 @@ namespace HashTable
             return false;
         }
 
-
+        //Method to remove  entry (value) from  a hashtable 
+        // It is just removing particular entry in the hashtable
+        public void Remove(K key)
+        {
+            int position = GetArrayPosition(key);
+            LinkedList<KeyValue<K, V>> linkedList = GetLinkedList(position);
+            bool itemFound = false;
+            KeyValue<K, V> foundItem = default(KeyValue<K, V>);
+            foreach (KeyValue<K, V> item in linkedList)
+            {
+                if (item.Key.Equals(key))
+                {
+                    itemFound = true;
+                    foundItem = item;
+                }
+                if (itemFound)
+                {
+                    linkedList.Remove(foundItem);
+                    break;
+                }
+            }
+        }
         //GetLinkedList method to create a linkedlist and store the values in that list. 
         protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
         {
